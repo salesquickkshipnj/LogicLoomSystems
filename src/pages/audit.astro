@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MultiStepAudit from '../components/forms/MultiStepAudit.astro';
+import RoiGrid from '../components/sections/RoiGrid.astro';
+
+const title = "Automation Feasibility Audit";
+const description = "Find out if your manual tasks can be automated. No technical jargon, just a clear plan.";
+
+// ROI Stats to reinforce value below the form
+const roiItems = [
+  { value: "40%", label: "Reduction in Costs" },
+  { value: "0", label: "Missed Opportunities" },
+  { value: "100%", label: "You Own The Data" }
+];
+---
+
+<Layout 
+  title={`${title} | LogicLoom`} 
+  description={description}
+  showStickyBar={false}
+>
+  <main class="py-20 px-6 bg-slate-50 min-h-screen font-sans">
+    
+    <div class="max-w-3xl mx-auto mb-12 text-center">
+      <h1 class="font-display text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+        Can this be automated?
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+        Tell us about the repetitive task that slows you down. We'll analyze it and email you a plain-English plan on how to fix it.
+      </p>
+    </div>
+
+    <MultiStepAudit webhookUrl="http://localhost:5678/webhook/audit-request" />
+    
+    <div class="mt-24">
+        <RoiGrid items={roiItems} accentColor="blue" />
+    </div>
+
+  </main>
+</Layout>
