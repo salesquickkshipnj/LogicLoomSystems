@@ -4,7 +4,6 @@ import { Icon } from 'astro-icon/components';
 interface Props {
   webhookUrl: string;
 }
-
 const { webhookUrl } = Astro.props;
 ---
 
@@ -253,9 +252,11 @@ const { webhookUrl } = Astro.props;
           });
 
           if (response.ok) {
+            // Once n8n responds successfully with JSON (200 OK), 
+            // manually redirect the user to your success page.
             window.location.href = '/audit/success';
           } else {
-            throw new Error('Server error');
+            throw new Error('Server responded with an error');
           }
         } catch (e) {
           alert('Network error. Please try again.');
